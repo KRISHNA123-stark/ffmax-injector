@@ -14,12 +14,6 @@ LOCAL_CPPFLAGS := -std=c++17 -fno-exceptions -fno-rtti -DIMGUI_IMPL_OPENGL_ES3
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := dobby
-LOCAL_SRC_FILES := ../../libs/$(TARGET_ARCH_ABI)/libdobby.so
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../include/dobby
-include $(PREBUILT_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_MODULE := ffmax_injector
 LOCAL_SRC_FILES := ../../src/main.cpp \
                    ../../src/memory/Memory.cpp \
@@ -37,5 +31,4 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../include \
 LOCAL_CPPFLAGS := -std=c++17 -fno-exceptions -fno-rtti -fvisibility=hidden
 LOCAL_LDLIBS := -llog -lEGL -lGLESv3 -landroid -ldl
 LOCAL_STATIC_LIBRARIES := imgui
-LOCAL_SHARED_LIBRARIES := dobby
 include $(BUILD_SHARED_LIBRARY)
