@@ -22,10 +22,7 @@
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO,  LOG_TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 
-extern "C" int DobbyHook(void *address, void *fake_func, void **out_origin_func);
-
 static EGLBoolean (*orig_eglSwapBuffers)(EGLDisplay, EGLSurface) = nullptr;
-static std::atomic<bool> g_running{false};
 static bool g_imgui_ready = false;
 static int g_width  = 0;
 static int g_height = 0;
@@ -69,6 +66,8 @@ static void on_load() {
     if (!sym)  { LOGE("eglSwapBuffers not found"); return; }
 
     orig_eglSwapBuffers = (EGLBoolean(*)(EGLDisplay, EGLSurface))sym;
-    DobbyHook((void*)sym, (void*)hook_eglSwapBuffers, (void**)&orig_eglSwapBuffers);
-    LOGI("eglSwapBuffers hooked");
+
+    // NOTE: Dobby hook removed - ImGui renders through original swap
+    // To add hook later, re-add Dobby library and DobbyHook call here
+    LOGI("eglSwapBuffers found at %p", sym);
 }
