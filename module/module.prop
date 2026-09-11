@@ -1,0 +1,6 @@
+id=ffmax_injector
+name=FFMax Potato Injector
+version=v1.0
+versionCode=1
+author=Potato
+description=External shell ImGui injector for FreeFire Max
